@@ -1,0 +1,9 @@
+Building PuffCoin
+
+See doc/readme-qt.rst for instructions on building puffcoin-qt,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of PuffCoin.
+
+See doc/build-*.txt for instructions on building puffcoin,
+the intended-for-services, no-graphical-interface, reference
+implementation of PuffCoin.
