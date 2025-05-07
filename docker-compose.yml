@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  puffcoin:
+    build: .
+    container_name: puffcoin-node
+    ports:
+      - "18333:18333"  # testnet порт
+    volumes:
+      - puffcoin-data:/root/.puffcoin
+    restart: unless-stopped
+    command: ["./puffcoind", "-testnet"]
+
+volumes:
+  puffcoin-data:
