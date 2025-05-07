@@ -19,6 +19,7 @@ services:
     ports:
       - "8334:8333"
       - "8335:8332"
+      - "8857:8857"
     volumes:
       - ./node2/puffcoin.conf:/root/.puffcoin/puffcoin.conf
       - node2-data:/root/.puffcoin
