@@ -5,13 +5,26 @@ services:
     build: .
     container_name: puffcoin-node1
     ports:
-      - "8333:8333"   # основной порт для входящих соединений
-      - "8332:8332"   # RPC порт (по желанию, можно убрать)
+      - "8333:8333"
+      - "8332:8332"
     volumes:
       - ./node1/puffcoin.conf:/root/.puffcoin/puffcoin.conf
       - node1-data:/root/.puffcoin
     restart: unless-stopped
     network_mode: bridge
 
+  node2:
+    build: .
+    container_name: puffcoin-node2
+    ports:
+      - "8334:8333"
+      - "8335:8332"
+    volumes:
+      - ./node2/puffcoin.conf:/root/.puffcoin/puffcoin.conf
+      - node2-data:/root/.puffcoin
+    restart: unless-stopped
+    network_mode: bridge
+
 volumes:
   node1-data:
+  node2-data:
