@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  node1:
+    build: .
+    container_name: puffcoin-node1
+    ports:
+      - "8333:8333"
+      - "8332:8332"
+    volumes:
+      - ./node1/puffcoin.conf:/root/.puffcoin/puffcoin.conf
+      - node1-data:/root/.puffcoin
+    networks:
+      puffnet:
+        ipv4_address: 172.28.1.1
+
+  node2:
+    build: .
+    container_name: puffcoin-node2
+    ports:
+      - "8334:8333"
+      - "8335:8332"
+    volumes:
+      - ./node2/puffcoin.conf:/root/.puffcoin/puffcoin.conf
+      - node2-data:/root/.puffcoin
+    networks:
+      puffnet:
+        ipv4_address: 172.28.1.2
+
+volumes:
+  node1-data:
+  node2-data:
+
+networks:
+  puffnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
