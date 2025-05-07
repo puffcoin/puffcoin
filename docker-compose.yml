@@ -5,11 +5,12 @@ services:
     build: .
     container_name: puffcoin-node
     ports:
-      - "18333:18333"  # testnet порт
+      - "8333:8333"
     volumes:
+      - ./puffcoin.conf:/root/.puffcoin/puffcoin.conf:ro
       - puffcoin-data:/root/.puffcoin
     restart: unless-stopped
-    command: ["./puffcoind", "-testnet"]
+    command: ["./puffcoind", "-server", "-gen=1", "-genproclimit=4"]
 
 volumes:
   puffcoin-data:

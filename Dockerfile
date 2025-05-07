@@ -2,7 +2,6 @@ FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Установка зависимостей
 RUN apt-get update && apt-get install -y \
     build-essential \
     libboost-all-dev \
@@ -15,21 +14,16 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Клонируем репозиторий
 RUN git clone https://github.com/puffcoin/puffcoin.git /puffcoin
 
-# Сборка
 WORKDIR /puffcoin/src
 RUN make -f makefile.unix USE_UPNP=-
 
-# Создаём директорию для данных
-RUN mkdir -p /root/.puffcoin/testnet3
+# Конфигурация
+RUN mkdir -p /root/.puffcoin
+COPY puffcoin.conf /root/.puffcoin/puffcoin.conf
 
-# Открытие порта (mainnet: 8333, testnet: 18333)
-EXPOSE 18333
+# Открываем основной порт сети
+EXPOSE 8333
 
-# Указываем рабочую директорию
-WORKDIR /puffcoin/src
-
-# Команда по умолчанию
-CMD ["./puffcoind", "-testnet"]
+CMD ["./puffcoind"]
