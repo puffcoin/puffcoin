@@ -31,3 +31,12 @@ Lovely, they line up and each have a single connection. Now we can make one of t
 ```
 ./puffcoind setgenerate true 16
 ```
+## Docker
+```
+docker-compose up --build -d
+```
+
+check logs
+```
+docker logs -f puffcoin-node
+```
