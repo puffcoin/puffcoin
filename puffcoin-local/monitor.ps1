@@ -12,7 +12,11 @@ while ($true) {
     Write-Host "Balance Node 1: $balance1"
     Write-Host "Balance Node 2: $balance2"
     Write-Host "Connected Peers: $peerCount"
-    Write-Host "------------------------------`n"
 
+    foreach ($peer in $peers) {
+        Write-Host " - " $peer.addr
+    }
+
+    Write-Host "------------------------------`n"
     Start-Sleep -Seconds 10
 }

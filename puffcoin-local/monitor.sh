@@ -8,7 +8,10 @@ while true; do
   echo -n "Balance Node 2: "
   docker exec puffcoin-node2 ./puffcoind getbalance
   echo -n "Connected Peers: "
-  docker exec puffcoin-node1 ./puffcoind getpeerinfo | jq length
+  peer_count=$(docker exec puffcoin-node1 ./puffcoind getpeerinfo | jq length)
+  echo "$peer_count"
+  echo "Peer IPs:"
+  docker exec puffcoin-node1 ./puffcoind getpeerinfo | jq -r '.[].addr'
   echo "------------------------------"
   sleep 10
 done
